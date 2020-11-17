@@ -1,0 +1,70 @@
+Jogo da memória:
+
+Raciocínio:
+Como funciona um jogo da memória?
+
+Em uma quantidade N de cartas, onde cada carta tem seu par, os jogadores devem pegar uma carta aleatória e enconytrar seu par que está entre as demais cartas todas embaralhadas e viradas para baixo.
+
+Se o jogador encontrar a carta correspondente a cara q ele pegou então as cartas ficarão com aface para cima e ele continua além de marcar um ponto cada vez que ele acertar.
+
+Caso o jogador pegue uma carta que não corresponda a carta que ele pegou inicialmente, então, ele deve colocar as cartas de volta no lugar com suas faces voltadas para baixo e a vez passará para o próximo jogador. 
+
+O jogo termina quando todos os pares  de cartas forem encontrados. O jodador que encontrou mais pares soma mais pontos e vence o jogo.
+
+O modelo acima descrito estaá na sua forma física. O trabalho agora é criar um algoritmo para desenvolvelo na sua forma virtual.
+
+
+Início:
+Receber um array do tipo string chamado deck;
+O array conterá 8 elementos e cada elemento conterá seu par totalizando um total de 16 elementos no array.
+O array deverá ser exibido na tela mas, seus elementos devem estar ocultos pelo caractere '?'.
+Seus elementos devem ser embaralhados sempre que o jogo começar e apenas antes do jogo começar.
+
+Entrada:
+
+PASSO 1:
+Receber o dado digitado pelo usuário;
+Este dado será do tipo numérico;
+Este número representará o índice do array deck;
+Será um  número para linha e um para coluna;
+	*OBS este processo de receber o dado para linha depois para coluna se dará duas vezes. 
+	*Na primeira vez receberá o dado que ira buscar o elemento que servirá de parâmetro de comparação.
+	*Na segunda vez receberá o dado que ira buscar o elemento que será comparando ao parâmetro.
+	
+	
+Processamento:
+PASSO 1:
+Percorrer o array na busca pelas coordenadas passadas de linha e coluna;
+Encontrando as coordenadas, salvar o elemento presente nestas coordenadas. ("Este  será o primeiro elemento que será o parâmetro de comparação.").
+
+PASSO 2:
+Percorrer o array novamente na busca pelas novas coordenadas passadas de linha e coluna;
+Encontrando as coordenadas, salvar o elemento presente nestas coordenadas. ("Este será o segundo elemento que será comparado ao primeiro elemento.").
+
+	*">>>Ver uma forma de como salvar cada um destes elementos<<<".
+
+PASSO 3:
+Verificar se o 2° elemento é igual ou não ao 1° elemento.
+Se sim: exibir na tela de forma permanente estes elementos substituindo o caractere '?' por eles, somar um ponto ao jogador que acertou o par;
+Se não: voltar o array ao estado anterior e passar a vez para o próximo jogador.
+
+PASSO 4: 
+Somar a pontuação de cada jogador.
+Retornar o jogador que somou mais pontos como vencedor.
+
+Saída:
+*Exibir o array deck na tela com seus elementos ocultados pelo caractere '?'.
+*Exibir os pares que foram encontrados;
+*Exibir a pontuação de cada jogador;
+*Exibir a mensagem de vencedor para o jogador ganhador;
+
+
+
+
+
+
+
+
+
+
+
