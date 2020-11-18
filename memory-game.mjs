@@ -1,11 +1,11 @@
 import readlineSync from 'readline-sync';
 
-let displayDeck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+let deck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 
-// let displayDeck = deck.reduce((replace,deck)=> replace.concat('?'),[])
+let displayDeck = deck.reduce((replace,deck)=> replace.concat('?'),[])
 console.log('MEMORY GAME');
-console.table(displayDeck);
+console.table(deck);
 console.log('\n\n')
 
 function shuffle(array) {
@@ -26,13 +26,15 @@ function shuffle(array) {
 
     return array;
 }
-console.log(shuffle(displayDeck));
+shuffle(deck);//CHAMA FUNÇÃO
+const shuffledDeck = shuffle(deck);//SALVANDO NA CONSTANTE PARA NÃO EMBARALHAR DE NOVO QUANDO CHAMAR NO LAÇO runGame. <<<<<<<<<
+//console.log(shuffledDeck)//é só um teste apagar depois.
 
 const dataInput=(data)=>{
     let checkData= true;
     let result;
     while(checkData){
-        const input = readlineSync.question('  Digite um valor entre 0 e 15:\n');
+        const input = Number(readlineSync.question('  Digite um valor entre 0 e 15:\n')) ;
         if (input >=0 && input <=15){
             result=input;
             checkData= false;
@@ -43,25 +45,50 @@ const dataInput=(data)=>{
     }
     return result;
 }//fim dataInput
+// const copyShuffleDeck = shuffle(deck) apagar depois
+
+const verifyCards =(firstNumber, secondNumber)=>{
+    return firstNumber!==secondNumber && shuffledDeck[firstNumber]===shuffledDeck[secondNumber]
+}
 
 let runGame = true;
-let x;
-let y;
+let cont=0;
+// let x;
+// let y;
 while(runGame){
+    console.table (shuffledDeck) //apagar depois
+    let copyDisplayDeck = [...displayDeck]; 
+    console.log(copyDisplayDeck)// apagar depois
     const firstNumber= dataInput('card one');
     const secondNumber= dataInput('card two');
     console.log(displayDeck[firstNumber], displayDeck[secondNumber], '\n\n')
     /// console.log("você digitou " +firstNumber+ " primeiro e depois " +secondNumber+ '\n\n');
     console.log('_________________________________________________________________________')
 
-    if (firstNumber===secondNumber){
+    /* if (firstNumber===secondNumber){
         console.log("Você digitou o mesmo número duas vezes e está ação é invalida. Por favor tente outro número")
 
     }
 
     if (firstNumber!==secondNumber && displayDeck[firstNumber]===displayDeck[secondNumber]){
         console.log('Acertou miseravi kkkk')
+   console.log(displayDeck[firstNumber])//teste 
+    }*///FOI SIMPLIFICADO COM A FUNÇÃO "verifyCards" NA LINHA 50.
+
+    if (verifyCards(firstNumber, secondNumber)) {
+        displayDeck[firstNumber] = shuffledDeck[firstNumber];
+        displayDeck[secondNumber] = shuffledDeck[secondNumber];
+        console.log ('CERTO!!!')
+        cont=cont+1
+    }else{
+console.log('invalido')
     }
 
+    if (cont>3) {
+        console.log('OK!!!')
+runGame = false;
+        
+    }
 
 }//runGame
+
