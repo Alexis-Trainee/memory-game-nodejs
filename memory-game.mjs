@@ -31,6 +31,7 @@ const shuffledDeck = shuffle(deck);//SALVANDO NA CONSTANTE PARA NÃO EMBARALHAR 
 const dataInput=(data)=>{
     let checkData= true;
     let result;
+
     while(checkData){
         const input = Number(readlineSync.question('  Digite um valor entre 0 e 15:\n')) ;
         if (input >=0 && input <=15){
@@ -81,7 +82,6 @@ while(runGame){
     console.log(copyDisplayDeck);
     const firstNumber= dataInput('card one');
     const secondNumber= dataInput('card two');
-    // console.log(players);//possivelmente sera apagado!<<<
     console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]");
     console.log('_________________________________________________________________________');
 
@@ -89,9 +89,6 @@ while(runGame){
         displayDeck[firstNumber] = shuffledDeck[firstNumber];
         displayDeck[secondNumber] = shuffledDeck[secondNumber];
         cont=cont+1;
-
-    }else{
-        console.log('{!!!!!>INVALIDO<!!!!!}');
     };
 
     if (firstNumber !== secondNumber && shuffledDeck[firstNumber] === shuffledDeck[secondNumber]) {
@@ -100,22 +97,18 @@ while(runGame){
         console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]\n");
 
     }else if (firstNumber === secondNumber || shuffledDeck[firstNumber] !== shuffledDeck[secondNumber]) {
-        console.log ('PRÓXIMO JOGADOR\n\n');
-
+        console.log ('INVÁLIDO PRÓXIMO JOGADOR\n\n');
         currentPlayer = currentPlayer=== 'play1' ? 'play2' : 'play1';
         console.log('NEXT PLAYER:',currentPlayer);
     };
 
-    if (cont>1) {
+    if (cont>=8) {
         // console.log('OK!!!');
+        console.log(copyDisplayDeck);
         winner('play');
         runGame = false;
     };
 
-
-
-    // console.log(players);
-
-}//runGame
+};//runGame
 
 
