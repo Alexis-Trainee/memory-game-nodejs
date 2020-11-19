@@ -59,19 +59,24 @@ console.log(players);
 
 const winner =(play1, play2)=>{
     if (players.play1.score>players.play2.score){
-console.log('play1 ganhou')
+console.log('play1 ganhou',players.play1.score)
     }else {
-console.log('play2 ganhou')
+console.log('play2 ganhou', players.play2.score)
     }
 }
 
-
+const name =(name)=>{
+const personName = (readlineSync.question('  Digite seu nome:\n')) ;
+return (personName);
+}
 
 
 
 //___________________________________________________________________________________________________________//
 let runGame = true;
 let cont=0;
+const person1 = name('name');
+const person2 = name('name');
 // let x;
 // let y;
 while(runGame){
@@ -81,7 +86,8 @@ while(runGame){
     const firstNumber= dataInput('card one');
     const secondNumber= dataInput('card two');
     console.log(displayDeck[firstNumber], displayDeck[secondNumber], '\n\n');//apagar depois
-    console.log(players);
+    console.log(players);//possivelmente sera apagado!<<<
+    console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]");
     /// console.log("você digitou " +firstNumber+ " primeiro e depois " +secondNumber+ '\n\n');
     console.log('_________________________________________________________________________')
 /*
