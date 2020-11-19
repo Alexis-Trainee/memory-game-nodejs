@@ -57,7 +57,13 @@ let currentPlayer = 'play1';
 var {play1:{score}} = players;
 console.log(players);
 
-
+const winner =(play1, play2)=>{
+    if (players.play1.score>players.play2.score){
+console.log('play1 ganhou')
+    }else {
+console.log('play2 ganhou')
+    }
+}
 
 
 
@@ -100,14 +106,15 @@ console.log('invalido')
 
 
     if (cont>3) {
-        console.log('OK!!!')
+        console.log('OK!!!');
+        winner('play1', 'play2')
 runGame = false;
         
     }
 
 
 if (firstNumber !== secondNumber && shuffledDeck[firstNumber] === shuffledDeck[secondNumber]) {
-console.log('Muito bem você acertou então ainda é sua vez!\n\n');
+    console.log('Muito bem você acertou então ainda é sua vez!\n\n');
     players[currentPlayer].score++;
 
 }else if (firstNumber === secondNumber || shuffledDeck[firstNumber] !== shuffledDeck[secondNumber]) {
@@ -117,7 +124,6 @@ console.log ('próximo jogador\n\n')
     console.log('next players',currentPlayer)
 };
 console.log(players);
-
 
 }//runGame
 
