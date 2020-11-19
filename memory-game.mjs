@@ -50,7 +50,20 @@ const dataInput=(data)=>{
 const verifyCards =(firstNumber, secondNumber)=>{
     return firstNumber!==secondNumber && shuffledDeck[firstNumber]===shuffledDeck[secondNumber]
 }
+//-------------------------------------------------------------------------------------------------------//
 
+let players = {'play1':{score:0}, 'play2':{score:0}};//mudado a variável de const para let.
+let currentPlayer = 'play1';
+var {play1:{score}} = players;
+console.log(players);
+
+
+
+
+
+
+
+//___________________________________________________________________________________________________________//
 let runGame = true;
 let cont=0;
 // let x;
@@ -61,11 +74,12 @@ while(runGame){
     console.log(copyDisplayDeck)// apagar depois
     const firstNumber= dataInput('card one');
     const secondNumber= dataInput('card two');
-    console.log(displayDeck[firstNumber], displayDeck[secondNumber], '\n\n')
+    console.log(displayDeck[firstNumber], displayDeck[secondNumber], '\n\n');//apagar depois
+    console.log(players);
     /// console.log("você digitou " +firstNumber+ " primeiro e depois " +secondNumber+ '\n\n');
     console.log('_________________________________________________________________________')
-
-    /* if (firstNumber===secondNumber){
+/*
+     if (firstNumber===secondNumber){
         console.log("Você digitou o mesmo número duas vezes e está ação é invalida. Por favor tente outro número")
 
     }
@@ -73,7 +87,7 @@ while(runGame){
     if (firstNumber!==secondNumber && displayDeck[firstNumber]===displayDeck[secondNumber]){
         console.log('Acertou miseravi kkkk')
    console.log(displayDeck[firstNumber])//teste 
-    }*///FOI SIMPLIFICADO COM A FUNÇÃO "verifyCards" NA LINHA 50.
+    }*///FOI SIMPLIFICADO COM A FUNÇÃO "verifyCards".
 
     if (verifyCards(firstNumber, secondNumber)) {
         displayDeck[firstNumber] = shuffledDeck[firstNumber];
@@ -84,11 +98,27 @@ while(runGame){
 console.log('invalido')
     }
 
+
     if (cont>3) {
         console.log('OK!!!')
 runGame = false;
         
     }
 
+
+if (firstNumber !== secondNumber && shuffledDeck[firstNumber] === shuffledDeck[secondNumber]) {
+console.log('Muito bem você acertou então ainda é sua vez!\n\n');
+    players[currentPlayer].score++;
+
+}else if (firstNumber === secondNumber || shuffledDeck[firstNumber] !== shuffledDeck[secondNumber]) {
+console.log ('próximo jogador\n\n')
+
+    currentPlayer = currentPlayer=== 'play1' ? 'play2' : 'play1';
+    console.log('next players',currentPlayer)
+};
+console.log(players);
+
+
 }//runGame
+
 
