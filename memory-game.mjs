@@ -2,11 +2,10 @@ import readlineSync from 'readline-sync';
 
 let deck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-
-let displayDeck = deck.reduce((replace,deck)=> replace.concat('?'),[])
+let displayDeck = deck.reduce((replace,deck)=> replace.concat('?'),[]);
 console.log('MEMORY GAME');
 console.table(deck);
-console.log('\n\n')
+console.log('\n\n');
 
 function shuffle(array) {
     //m= currentIndex, t= temporaryIndex, i= randomIndex;
@@ -25,10 +24,9 @@ function shuffle(array) {
     }
 
     return array;
-}
+};
 shuffle(deck);//CHAMA FUNÇÃO
 const shuffledDeck = shuffle(deck);//SALVANDO NA CONSTANTE PARA NÃO EMBARALHAR DE NOVO QUANDO CHAMAR NO LAÇO runGame. <<<<<<<<<
-//console.log(shuffledDeck)//é só um teste apagar depois.
 
 const dataInput=(data)=>{
     let checkData= true;
@@ -44,92 +42,79 @@ const dataInput=(data)=>{
         }
     }
     return result;
-}//fim dataInput
-// const copyShuffleDeck = shuffle(deck) apagar depois
+};//fim dataInput
 
 const verifyCards =(firstNumber, secondNumber)=>{
     return firstNumber!==secondNumber && shuffledDeck[firstNumber]===shuffledDeck[secondNumber]
-}
-//-------------------------------------------------------------------------------------------------------//
+};
 
-let players = {'play1':{score:0}, 'play2':{score:0}};//mudado a variável de const para let.
+const players = {'play1':{score:0}, 'play2':{score:0}};
 let currentPlayer = 'play1';
 var {play1:{score}} = players;
-console.log(players);
+console.log(players,'\n\n');//apagar
 
-const winner =(play1, play2)=>{
+const winner =(play)=>{
     if (players.play1.score>players.play2.score){
-console.log('play1 ganhou',players.play1.score)
+        console.log('Parabéns ',person1,'seu score é de:',players.play1.score, 'você é o(a) vencedor(a) do jogo!!!');
+
+    }else if(players.play1.score === players.play2.score ) {
+        console.log("PARTIDA EMPATADA!");
+
     }else {
-console.log('play2 ganhou', players.play2.score)
+        console.log('Parabéns ',person2,'seu score é de:',players.play2.score, 'você é o(a) vencedor(a) do jogo!!!');
     }
-}
+};
 
 const name =(name)=>{
-const personName = (readlineSync.question('  Digite seu nome:\n')) ;
-return (personName);
-}
+    const personName = (readlineSync.question('QUAL SEU NOME:\n')) ;
+    return (personName);
+};
 
-
-
-//___________________________________________________________________________________________________________//
 let runGame = true;
-let cont=0;
+let cont = 0;
 const person1 = name('name');
 const person2 = name('name');
-// let x;
-// let y;
+
 while(runGame){
-    console.table (shuffledDeck) //apagar depois
-    let copyDisplayDeck = [...displayDeck]; 
-    console.log(copyDisplayDeck)// apagar depois
+    console.table (shuffledDeck); //apagar depois
+    const copyDisplayDeck = [...displayDeck]; 
+    console.log(copyDisplayDeck);
     const firstNumber= dataInput('card one');
     const secondNumber= dataInput('card two');
-    console.log(displayDeck[firstNumber], displayDeck[secondNumber], '\n\n');//apagar depois
-    console.log(players);//possivelmente sera apagado!<<<
+    // console.log(players);//possivelmente sera apagado!<<<
     console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]");
-    /// console.log("você digitou " +firstNumber+ " primeiro e depois " +secondNumber+ '\n\n');
-    console.log('_________________________________________________________________________')
-/*
-     if (firstNumber===secondNumber){
-        console.log("Você digitou o mesmo número duas vezes e está ação é invalida. Por favor tente outro número")
-
-    }
-
-    if (firstNumber!==secondNumber && displayDeck[firstNumber]===displayDeck[secondNumber]){
-        console.log('Acertou miseravi kkkk')
-   console.log(displayDeck[firstNumber])//teste 
-    }*///FOI SIMPLIFICADO COM A FUNÇÃO "verifyCards".
+    console.log('_________________________________________________________________________');
 
     if (verifyCards(firstNumber, secondNumber)) {
         displayDeck[firstNumber] = shuffledDeck[firstNumber];
         displayDeck[secondNumber] = shuffledDeck[secondNumber];
-        console.log ('CERTO!!!')
-        cont=cont+1
+        cont=cont+1;
+
     }else{
-console.log('invalido')
-    }
+        console.log('{!!!!!>INVALIDO<!!!!!}');
+    };
+
+    if (firstNumber !== secondNumber && shuffledDeck[firstNumber] === shuffledDeck[secondNumber]) {
+        console.log('Muito bem você acertou então ainda é sua vez!\n\n');
+        players[currentPlayer].score++;
+        console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]\n");
+
+    }else if (firstNumber === secondNumber || shuffledDeck[firstNumber] !== shuffledDeck[secondNumber]) {
+        console.log ('PRÓXIMO JOGADOR\n\n');
+
+        currentPlayer = currentPlayer=== 'play1' ? 'play2' : 'play1';
+        console.log('NEXT PLAYER:',currentPlayer);
+    };
+
+    if (cont>1) {
+        // console.log('OK!!!');
+        winner('play');
+        runGame = false;
+    };
 
 
-    if (cont>3) {
-        console.log('OK!!!');
-        winner('play1', 'play2')
-runGame = false;
-        
-    }
 
-
-if (firstNumber !== secondNumber && shuffledDeck[firstNumber] === shuffledDeck[secondNumber]) {
-    console.log('Muito bem você acertou então ainda é sua vez!\n\n');
-    players[currentPlayer].score++;
-
-}else if (firstNumber === secondNumber || shuffledDeck[firstNumber] !== shuffledDeck[secondNumber]) {
-console.log ('próximo jogador\n\n')
-
-    currentPlayer = currentPlayer=== 'play1' ? 'play2' : 'play1';
-    console.log('next players',currentPlayer)
-};
-console.log(players);
+    // console.log(players);
 
 }//runGame
 
