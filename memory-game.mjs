@@ -72,7 +72,7 @@ const name =(name)=>{
 };
 
 let runGame = true;
-let cont = 0;
+let counter = 0;
 const person1 = name('name');
 const person2 = name('name');
 
@@ -89,7 +89,7 @@ while(runGame){
     if (verifyCards(firstNumber, secondNumber)) {
         displayDeck[firstNumber] = shuffledDeck[firstNumber];
         displayDeck[secondNumber] = shuffledDeck[secondNumber];
-        cont=cont+1;
+        counter = counter+1;
     };
 
     if (firstNumber !== secondNumber && shuffledDeck[firstNumber] === shuffledDeck[secondNumber]) {
@@ -103,7 +103,7 @@ while(runGame){
         console.log('NEXT PLAYER:',currentPlayer);
     };
 
-    if (cont>=8) {
+    if (counter>=8) {
         console.log(displayDeck);
         winner('play');
         runGame = false
