@@ -1,16 +1,6 @@
+//ESTE ARQUIVO É SÓ UM TESTE.
+import {shuffle, verifyCards, winner} from './memory-game-function.mjs'; 
 import readlineSync from 'readline-sync';
-import {gameInstructions} from './memory-game-function.mjs'
-
-let tutorialGame = true;
-while(tutorialGame){
-    console.log(gameInstructions());
-    let inputData = readlineSync.question('  Digite $ para iniciar o jogo:\n');
-    if(inputData === '$') {
-        tutorialGame = false;
-    }
-};
-console.clear();
-
 let deck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
 let displayDeck = deck.reduce((replace,deck)=> replace.concat('?'),[]);
@@ -18,25 +8,8 @@ console.log('MEMORY GAME');
 console.table(deck);
 console.log('\n\n');
 
-function shuffle(array) {
-    //m= currentIndex, t= temporaryIndex, i= randomIndex;
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle…//Enquanto ainda houver elementos para embaralhar.
-    while (currentIndex !==0) {
-
-        // Pick a remaining element…// Escolha um elemento restante…
-        randomIndex = Math.floor(Math.random() * currentIndex--);
-
-        // And swap it with the current element.// E troque-o com o elemento atual.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-    return array;
-};
-shuffle(deck);
-const shuffledDeck = shuffle(deck);
+shuffle(deck);//CHAMA FUNÇÃO
+const shuffledDeck = shuffle(deck);//SALVANDO NA CONSTANTE PARA NÃO EMBARALHAR DE NOVO QUANDO CHAMAR NO LAÇO runGame. <<<<<<<<<
 
 const dataInput=(data)=>{
     let checkData= true;
@@ -53,28 +26,12 @@ const dataInput=(data)=>{
         }
     }
     return result;
-};
-
-const verifyCards =(firstNumber, secondNumber)=>{
-    return firstNumber!==secondNumber && shuffledDeck[firstNumber]===shuffledDeck[secondNumber]
-};
+};//fim dataInput
 
 const players = {'play1':{score:0}, 'play2':{score:0}};
 let currentPlayer = 'play1';
 var {play1:{score}} = players;
-console.log(players,'\n\n');
-
-const winner =(play)=>{
-    if (players.play1.score>players.play2.score){
-        console.log('Parabéns ',person1,'seu score é de:',players.play1.score, 'você é o(a) vencedor(a) do jogo!!!');
-
-    }else if(players.play1.score === players.play2.score ) {
-        console.log("PARTIDA EMPATADA!");
-
-    }else {
-        console.log('Parabéns ',person2,'seu score é de:',players.play2.score, 'você é o(a) vencedor(a) do jogo!!!');
-    }
-};
+console.log(players,'\n\n');//apagar
 
 const name =(name)=>{
     const personName = (readlineSync.question('QUAL SEU NOME:\n')) ;
