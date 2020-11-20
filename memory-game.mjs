@@ -77,12 +77,13 @@ const person1 = name('name');
 const person2 = name('name');
 
 while(runGame){
-    console.table (shuffledDeck); //apagar depois
+    console.table (shuffledDeck); //está linha é apenas para facilitar os testes apagar depois
     const copyDisplayDeck = [...displayDeck]; 
     console.log(copyDisplayDeck);
     const firstNumber= dataInput('card one');
     const secondNumber= dataInput('card two');
     console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]");
+    console.log(copyDisplayDeck);
     console.log('_________________________________________________________________________');
 
     if (verifyCards(firstNumber, secondNumber)) {
@@ -103,12 +104,10 @@ while(runGame){
     };
 
     if (cont>=8) {
-        // console.log('OK!!!');
-        console.log(copyDisplayDeck);
+        console.log(displayDeck);
         winner('play');
-        runGame = false;
+        runGame = false
     };
 
 };//runGame
-
 
