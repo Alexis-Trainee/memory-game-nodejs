@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import {gameInstructions} from './memory-game-function.mjs'
+import {gameInstructions} from './memory-game-tutorial.mjs'
 
 let tutorialGame = true;
 while(tutorialGame){
