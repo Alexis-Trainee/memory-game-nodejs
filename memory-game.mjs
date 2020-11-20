@@ -15,7 +15,7 @@ let deck = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'A', 'B', 'C', 'D', 'E', 'F'
 
 let displayDeck = deck.reduce((replace,deck)=> replace.concat('?'),[]);
 console.log('MEMORY GAME');
-console.table(deck);
+// console.table(deck);
 console.log('\n\n');
 
 function shuffle(array) {
@@ -91,9 +91,11 @@ while(runGame){
     const copyDisplayDeck = [...displayDeck]; 
     console.log(copyDisplayDeck);
     const firstNumber= dataInput('card one');
+    console.log('você encontrou: (',shuffledDeck[firstNumber],') ao digitar:',firstNumber,'\n');
     const secondNumber= dataInput('card two');
+    console.log('você encontrou: (',shuffledDeck[secondNumber],') ao digitar:',secondNumber,'\n');
     console.log("[",person1,' score:',players.play1.score, "] [",person2,' score:',players.play2.score,"]");
-    console.log(copyDisplayDeck);
+    // console.log(copyDisplayDeck);
     console.log('_________________________________________________________________________');
 
     if (verifyCards(firstNumber, secondNumber)) {
