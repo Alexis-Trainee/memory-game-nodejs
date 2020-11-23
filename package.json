@@ -1,0 +1,22 @@
+{
+  "name": "memory-game-nodejs",
+  "version": "1.0.0",
+  "description": "Projeto de criação de um jogo da memória que rode no nodejs escrito utilizando somente javaScript.",
+  "main": "memory-game.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexis-Trainee/memory-game-nodejs.git"
+  },
+  "author": "alexis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alexis-Trainee/memory-game-nodejs/issues"
+  },
+  "homepage": "https://github.com/Alexis-Trainee/memory-game-nodejs#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}

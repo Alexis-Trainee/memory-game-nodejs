@@ -64,15 +64,17 @@ let currentPlayer = 'play1';
 var {play1:{score}} = players;
 console.log(players,'\n\n');
 
-const winner =(play)=>{
-    if (players.play1.score>players.play2.score){
-        console.log('Parabéns ',person1,'seu score é de:',players.play1.score, 'você é o(a) vencedor(a) do jogo!!!');
+const winner =(players)=>{
+	const { play1: { score: score1 }, play2: { score: score2 }} = players;
+	
+    if (score1 > score2){
+        console.log('Parabéns ',person1,'seu score é de:', score1, 'você é o(a) vencedor(a) do jogo!!!');
 
-    }else if(players.play1.score === players.play2.score ) {
+    }else if(score1 === score2) {
         console.log("PARTIDA EMPATADA!");
 
     }else {
-        console.log('Parabéns ',person2,'seu score é de:',players.play2.score, 'você é o(a) vencedor(a) do jogo!!!');
+        console.log('Parabéns ',person2,'seu score é de:',score2, 'você é o(a) vencedor(a) do jogo!!!');
     }
 };
 
@@ -117,7 +119,7 @@ while(runGame){
 
     if (counter>=8) {
         console.log(displayDeck);
-        winner('play');
+        winner(players);
         runGame = false
     };
 
